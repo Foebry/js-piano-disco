@@ -1,18 +1,11 @@
 body {
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 0 20px;
-  gap: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0 20px;
+    gap: 10px;
+    height: 100vh;
 }
-
 .tile {
-  width: 50px;
-  height: 50vh;
-  transition: all 0.5s;
+    width: 50px;
+    height: 50vh;
 }
-.tile.active {
-  height: 80vh;
-  transition: all 0.5s;
-}
-
-/*# sourceMappingURL=style.css.map */

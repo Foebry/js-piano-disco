@@ -9,6 +9,7 @@ class Tile {
 		this.element = this.generateHTML();
 		this.setStyling();
 		this.element.onclick = this.handleClickEvent.bind(this);
+		this.inverted = false;
 	}
 	generateHTML() {
 		this.holder.insertAdjacentHTML("beforeend", `<div class="tile"></div>`);
@@ -20,7 +21,19 @@ class Tile {
 		this.element.style.border = `2px solid ${this.bgc}`;
 	}
 	handleClickEvent() {
+		tiles.filter(tile => tile.inverted).forEach(tile => tile.invertColor())
 		this.holder.style.backgroundColor = this.element.style.backgroundColor;
+		this.invertColor();
+	}
+	invertColor() {
+		const border_color = this.element.style.borderColor;
+		const colors = border_color.substr(4, border_color.length - 5).split(",");
+		this.inverted = !this.inverted;
+		this.element.style.borderColor = `rgb(${[...colors].map(color=>Math.abs(color-255))})`;
+	}
+	resetBorderColor() {
+		this.element.style.borderColor = this.element.style.backgroundColor;
+		this.inverted = !this.inverted;
 	}
 }
 

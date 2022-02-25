@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0 20px;
+    gap: 10px;
+    height: 100vh;
+    transition: background-color 0.5s;
+}
+.tile {
+    width: 50px;
+    height: 50vh;
+    cursor: pointer;
+}
+.tile.active {
+    height: 80vh;
+}
+#play {
+    box-sizing: border-box;
+    padding: 5px;
+    font-family: "icomoon";
+    position: absolute;
+    right: 2vh;
+    bottom: 1vh;
+    font-size: 22px;
+    cursor: pointer;
+}
+#play:before {
+    content: "PLAY \ea1c";
+}
+#play.active:before {
+    content: "STOP \ea1e";
+}

@@ -4,6 +4,7 @@ body {
     padding: 0 20px;
     gap: 10px;
     height: 100vh;
+    transition: background-color 0.5s;
 }
 .tile {
     width: 50px;

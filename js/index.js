@@ -2,6 +2,7 @@ const body = document.querySelector("body");
 const play = document.querySelector("#play");
 const speed = 1000; //1s
 const tiles = [];
+let intervalId;
 
 class Tile {
 	constructor(holder) {
@@ -56,4 +57,23 @@ body.onclick = (e) => {
 function activatePlay() {
 	let counter = 1;
 	tiles[0].element.click();
+	intervalId = setInterval(() => {
+		if (play.classList.contains("active")) {
+			let tile = tiles[counter].element;
+			tile.click();
+			counter++;
+			if (counter == tiles.length) counter = 0;
+		}
+	}, speed / 2);
+}
+
+function deactivatePlay() {
+	clearInterval(intervalId);
+	setTimeout(() => {
+		tiles.forEach(tile => {
+			tile.element.classList.remove("active");
+			tile.element.style.borderColor = tile.element.style.backgroundColor;
+			body.style.background = "white";
+		});
+	}, speed)
 }

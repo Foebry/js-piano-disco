@@ -8,6 +8,10 @@ body {
 .tile {
     width: 50px;
     height: 50vh;
+    cursor: pointer;
+}
+.tile.active {
+    height: 80vh;
 }
 #play {
     box-sizing: border-box;

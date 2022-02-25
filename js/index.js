@@ -5,7 +5,7 @@ const tiles = [];
 
 class Tile {
 	constructor(holder) {
-		this.transition_speed = speed;
+		this.transition_speed = speed / 1000;
 		this.holder = holder;
 		this.element = this.generateHTML();
 		this.setStyling();
@@ -20,11 +20,21 @@ class Tile {
 		this.bgc = `rgb(${[...Array(3).fill(0).map(el=>Math.round(Math.random() * 255))]})`;
 		this.element.style.backgroundColor = this.bgc;
 		this.element.style.border = `2px solid ${this.bgc}`;
+		this.element.style.transition = `height ${this.transition_speed}s`;
+		console.log(this.element.style.transition);
 	}
 	handleClickEvent() {
 		tiles.filter(tile => tile.inverted).forEach(tile => tile.invertColor())
 		this.holder.style.backgroundColor = this.element.style.backgroundColor;
 		this.invertColor();
+		if (play.classList.contains("active")) {
+			this.toggleActiveState();
+			setTimeout(this.toggleActiveState.bind(this), speed);
+		}
+	}
+	toggleActiveState() {
+		console.log(this.element);
+		this.element.classList.toggle("active");
 	}
 	invertColor() {
 		const border_color = this.element.style.borderColor;
@@ -38,6 +48,12 @@ body.onclick = (e) => {
 	if (e.target == body) tiles.push(new Tile(body));
 	else if (e.target == play) {
 		play.classList.toggle("active");
+		if (play.classList.contains("active")) activatePlay()
+		else deactivatePlay();
 	}
+}
 
+function activatePlay() {
+	let counter = 1;
+	tiles[0].element.click();
 }

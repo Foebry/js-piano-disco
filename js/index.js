@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const play = document.querySelector("#play");
 const speed = 1000; //1s
 const tiles = [];
 
@@ -31,13 +32,12 @@ class Tile {
 		this.inverted = !this.inverted;
 		this.element.style.borderColor = `rgb(${[...colors].map(color=>Math.abs(color-255))})`;
 	}
-	resetBorderColor() {
-		this.element.style.borderColor = this.element.style.backgroundColor;
-		this.inverted = !this.inverted;
-	}
 }
 
-body.onclick = () => {
-	const tile = new Tile(body);
-	tiles.push(tile);
+body.onclick = (e) => {
+	if (e.target == body) tiles.push(new Tile(body));
+	else if (e.target == play) {
+		play.classList.toggle("active");
+	}
+
 }

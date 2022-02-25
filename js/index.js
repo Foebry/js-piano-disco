@@ -8,6 +8,7 @@ class Tile {
 		this.holder = holder;
 		this.element = this.generateHTML();
 		this.setStyling();
+		this.element.onclick = this.handleClickEvent.bind(this);
 	}
 	generateHTML() {
 		this.holder.insertAdjacentHTML("beforeend", `<div class="tile"></div>`);
@@ -17,6 +18,9 @@ class Tile {
 		this.bgc = `rgb(${[...Array(3).fill(0).map(el=>Math.round(Math.random() * 255))]})`;
 		this.element.style.backgroundColor = this.bgc;
 		this.element.style.border = `2px solid ${this.bgc}`;
+	}
+	handleClickEvent() {
+		this.holder.style.backgroundColor = this.element.style.backgroundColor;
 	}
 }
 
